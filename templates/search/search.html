@@ -1,0 +1,27 @@
+{% macro easy_text_form(col_name, note) %}
+<div class="form-group row">
+    <label for="{{ col_name }}" class="col-2 offset-1 col-form-label">{{ col_name }} =</label>
+    <div class="col-3">
+        <input type="text" class="form-control" id="{{ col_name }}" name="{{ col_name }}" placeholder="{{ col_name }}">
+        <small class="form-text">{{ note }}</small>
+    </div>
+</div>
+{%- endmacro %}
+
+{% extends "index/index.html" %}
+
+{% block content %}
+
+<div class=container>
+    <div style="width:100%; height:80vh">
+        <h1>Search Item</h1>
+        <form class="navbar-form " role="search" method="POST" action="{{url_for('search' )}}" >
+          <div class="form-group">
+            <input type="text" class="form-control" id="search" name="search" placeholder="Please enter the keywords." required>
+          </div>
+          <button type="submit" class="btn btn-default">Search</button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

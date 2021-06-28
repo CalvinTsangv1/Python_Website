@@ -1,0 +1,37 @@
+{% extends 'appbuilder/init.html' %}
+
+{% block body %}
+    
+    {% include 'appbuilder/general/confirm.html' %}
+    {% include 'appbuilder/general/alert.html' %}
+    
+    {% block navbar %}
+        <header class="top" role="header">
+            {{ baselib.navbar_block(appbuilder.menu, appbuilder.languages) }}
+        </header>
+    {% endblock %}
+    
+    <div class="container-fluid">
+    
+        <div class="row">
+            {% block messages %}
+                {% include 'appbuilder/flash.html' %}
+            {% endblock %}
+            
+            {% block content %}
+                
+            {% endblock %}
+        </div>
+    
+    </div>
+    
+    {% block footer %}
+        <footer>
+            <div class="img-rounded nav-fixed-bottom">
+                <div class="container">
+                    {% include 'footer/footer.html' %}
+                </div>
+            </div>
+        </footer>
+    {% endblock %}
+{% endblock %}

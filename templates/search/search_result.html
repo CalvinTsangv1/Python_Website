@@ -1,0 +1,29 @@
+
+{% extends "index/index.html" %}
+{% block content %}
+
+
+<div class="container">
+
+        <h1>Search : {{keywords}}</h1>
+        {% for result in results %}
+            <figure style="display:inline-block;text-align:center;height:200px;width:220px;padding:20px 10px 10px 20px;">
+                <a href="/product_detail/itemId={{result.id}}">   
+                    <figcaption style="font-size:14px; text-align:left;">
+                        <p>{{result.user.username}}</p>
+                        <p>{{result.createdDate}}</p>
+                    </figcaption>
+                    <img src="{{result.photoURL}}"alt={{result.itemName}}  style="width:180px;height:200px;padding-bottom:10px"></img>
+                    <figcaption style="font-size:14px; text-align:left;">
+                        <p style=" overflow:hidden;white-space: nowrap;text-overflow: ellipsis;">{{result.itemName}}</p>
+                        <p>HK$: {{result.price}}</p>
+                        <p style="text-align:right">{{result.viewCounter}} Views</p>
+                    </figcaption>
+                </a>
+            </figure>
+        {% endfor %}
+</div>
+
+
+{% endblock %}
+

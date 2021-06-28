@@ -1,0 +1,14 @@
+{% extends "index/index.html" %}
+{% block content %}
+    <div class=container>
+        <h1>Category</h1>
+        {% for category in categories %}
+        <figure style="display:inline-block;text-align:left;height:100px;width:400px;padding:10px;10px;10px;10px">
+            <a href="/product_list/categoryId={{category.id}}">   <!-- .replace(" ", "").casefold() -->
+                <!-- <img src="{{category.iconURL}}" alt="{{category.categoryName}}" style="height:70px;width:60px; padding-bottom:10px"></img> -->
+                <figcaption style="font-size:12pt;">{{category.categoryName}}</figcaption>
+            </a>
+        </figure>
+        {% endfor %}
+    </div>
+{% endblock %}

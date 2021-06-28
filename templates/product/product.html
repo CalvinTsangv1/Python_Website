@@ -1,0 +1,79 @@
+{% extends "index/index.html" %}
+{% block content %}
+
+{% macro showCat(id) %}
+    {% if parentCategory.categoryName!=NULL %}
+      <h5><a href="/categoryview">Category</a> / 
+      <a href="/product_list/categoryId={{category.parentCategoryID}}">{{parentCategory.categoryName}}</a> / 
+      <a href="/product_list/categoryId={{item.categoryID}}">{{item.category.categoryName}}</a></h5>
+    {% else %}
+      <h5><a href="/categoryview">Category</a> / 
+      <a href="/product_list/categoryId={{item.categoryID}}">{{item.category.categoryName}}</a></h5>
+    {% endif %}  
+{% endmacro %}
+
+<script>
+var text = window.location.href;
+$(document).ready(function(){
+    $("#copyurl").click(function(){
+        var dummy = document.createElement('input')
+        document.body.appendChild(dummy);
+        dummy.value = text;
+        dummy.select();
+        document.execCommand('copy');
+        document.body.removeChild(dummy);
+        $("#copyurl span").text("Link Copied")
+    });
+});
+</script>
+
+<div class=container>
+    {{showCat(item.categoryID)}}
+    <div style="  display: flex;">
+        <div class="left" style=" padding:20px 10px 10px 20px;">
+            <img src={{item.photoURL}} alt={{item.itemName}} style="width:500px;height:500px;" ></img> 
+        </div>
+        <div class="right" style=" padding:5px 10px 10px 20px; line-height:50px; font-size:28px;margin-left:150px"> 
+            <h1>{{item.itemName}}</h1>
+            <p>Seller: {{item.user.username}}</p>
+            <p>Category: {{item.category.categoryName}}</p>
+            <p>Price: ${{item.price}}</p>
+            <p>Views: {{item.viewCounter}}</p>
+            <p>Created Date: {{item.createdDate}}</p>
+            <p>Condition: {{item.condition.condition}}</p>
+            <p>Item Status: {{item.itemStatus.itemStatus}}</p>
+            <p>Description: &nbsp;{{item.itemDescription}}</p>
+            <div>
+                <button class="btn btn-secondary" type="button"  aria-haspopup="true" aria-expanded="false" id="copyurl" title="click to copy">
+                    <i class="fa fa-share" aria-hidden="true"></i>
+                    <span>Copy URL</span>  
+                </button>
+                <!-- Button trigger modal -->
+                <button class="btn btn-secondary" type="button" data-toggle="modal" data-target="#exampleModalCenter">
+                    QR Code
+                </button>
+                <button class="btn btn-secondary" type="button" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u={{url}}');">
+                    Facebook
+                </button>
+                <button class="btn btn-secondary" type="button" onclick="window.open('https://twitter.com/intent/tweet?url={{url}}');">
+                    Twitter
+                </button>
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content"style="width:240px;height:240px;">
+                            <div class="modal-body" >
+                                <img src="{{qrcode(url)}}" class="media-object" alt="{{url}}" style="width:200px;height:200px;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> 
+    {% include ('comment/comment_content.html') %}
+    {% include ('comment/comment_form.html') %}
+
+</div>
+
+{% endblock %}

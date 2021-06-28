@@ -1,0 +1,48 @@
+{% extends "index/index.html" %}
+{% block content %}
+
+<!-- 先宣告一個巨集 -->
+{% macro easy_text_form(col_name, note) %}
+<div class="form-group row">
+    <label for="{{ note }}" class="col-2 offset-1 col-form-label">{{ note }}:</label>
+    <div class="col-3">
+        <input type="text" class="form-control" id="{{ col_name }}" name="{{ col_name }}" placeholder="{{ col_name }}">
+    </div>
+</div>
+{%- endmacro %}
+
+<div class="container">
+    <h1>New Item</h1>
+    <div class="row" style="margin-left:5px">
+        <div class="col">
+            <form method="post" action="{{url_for('createItem')}}">
+                {{ easy_text_form("Please enter your item name", "Item Name") }}
+                {{ easy_text_form("Please choose a category", "Category") }}
+                {{ easy_text_form("Please enter your expected price", "Price") }}
+                {{ easy_text_form("Please enter the item description", "Description") }}
+                {{ easy_text_form("Please enter the item's brand", "Brand") }}
+                {{ easy_text_form("Please upload photo", "upload photo") }}
+                {{ easy_text_form("Please enter the item condition", "condition") }}
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
+
+<!--
+  id INTEGER NOT NULL,
+  "userID" INTEGER NOT NULL,
+  "categoryID" INTEGER NOT NULL,    *
+  "itemName" VARCHAR(100) NOT NULL, *
+  "brandID" INTEGER,          *
+  price INTEGER NOT NULL,     *
+  "itemDescription" TEXT,     *
+  "photoURL" VARCHAR(2000),   *
+  "itemStatusID" INTEGER,     
+  "conditionID" INTEGER,      *
+  "createdDate" DATE NOT NULL,
+  "viewCounter" INTEGER NOT NULL,
+                              -->

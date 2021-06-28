@@ -1,0 +1,73 @@
+{% extends "index/index.html" %}
+{% block content %}
+
+
+
+<script>
+
+$(document).ready(function(){
+    document.querySelectorAll("table tr td").forEach(function(node){
+    	node.ondblclick=function(){
+    		var val=this.innerHTML;
+    		var input=document.createElement("input");
+    		input.value=val;
+    		input.onblur=function(){
+    			var val=this.value;
+    			this.parentNode.innerHTML=val;
+    		}
+    		this.innerHTML="";
+    		this.appendChild(input);
+    		input.focus();
+    	}
+    });
+});
+
+
+</script>
+
+<div class=container>
+    <div style="  display: flex;">
+        <div class="left" style=" padding:20px 10px 10px 20px;">
+            <img src={{item.photoURL}} alt={{item.itemName}} style="width:500px;height:500px;" ></img> 
+        </div>
+        <div class="right" style=" padding:5px 10px 10px 20px; line-height:50px; font-size:20px;"> 
+            <form method="post" role="updateItem"  action="{{url_for('productUpdate')}}">
+                <table>
+                	<tr>
+                		<th>Name</th>
+                		<td>{{item.itemName}}</td>
+                	</tr>
+                	<tr>
+                		<th>Category</th>
+                		<td>{{item.category.categoryName}}</td>
+            		     <!--<select name="colour" method="GET" action="/">-->
+                   <!--             {% for category in categorys %}-->
+                   <!--                 <option value="{{category}}" SELECTED>{{category}}</option>"-->
+                   <!--             {% endfor %}-->
+                   <!--         </select>-->
+                	</tr>
+                	<tr>
+                		<th>Price</th>
+                		<td>{{item.price}}</td>
+                	</tr>
+                	<tr>
+                		<th>Description</th>
+                		<td>{{item.itemDescription}}</td>
+                	</tr>
+                	<tr>
+                		<th>condition</th>
+                		<td>{{item.condition.condition}}</td>
+                	</tr>
+                	<tr>
+                		<th>Status</th>
+                		<td>{{item.itemStatus.itemStatus}}</td>
+                	</tr>
+                </table>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div> 
+
+</div>
+
+{% endblock %}

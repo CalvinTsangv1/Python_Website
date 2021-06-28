@@ -1,0 +1,38 @@
+{% extends "index/index.html" %}
+{% block content %}
+    <div class="container">
+        
+        {% for list in lists %}
+            {% if list < 34 %}
+                <div><h1>{{lists[list]}}</h1></div>
+            {% else %}
+                <div>
+                    <h5>
+                        <a href="/product_list/categoryId={{list}}">{{lists[list]}}</a>
+                    </h5>
+                </div>
+            {% endif %}
+        {% endfor %}
+        {% if title!=NULL %}
+            <div><h1>{{title}}</h1></div>
+        {% endif %}
+        <hr>
+        
+        {% for product in product_list %}
+            <figure style="display:inline-block;text-align:center;height:200px;width:220px;padding:20px 10px 10px 20px;">
+                <a href="/product_detail/itemId={{product.id}}">   
+                    <figcaption style="font-size:14px; text-align:left;">
+                        <p>{{product.user.username}}</p>
+                        <p>{{product.createdDate}}</p>
+                    </figcaption>
+                    <img src="{{product.photoURL}}"alt={{product.itemName}}  style="width:180px;height:200px;padding-bottom:10px"></img>
+                    <figcaption style="font-size:14px; text-align:left;">
+                        <p style=" overflow:hidden;white-space: nowrap;text-overflow: ellipsis;">{{product.itemName}}</p>
+                        <p>HK$: {{product.price}}</p>
+                        <p style="text-align:right">{{product.viewCounter}} Views</p>
+                    </figcaption>
+                </a>
+            </figure>
+        {% endfor %}
+    </div> 
+{% endblock %}

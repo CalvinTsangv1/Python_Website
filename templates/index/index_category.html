@@ -1,0 +1,101 @@
+
+<div class=container><!-- right/left point unfinish -->
+  <div class="menu-wrapper">
+    <ul class="list-group list-group-horizontal" style="display:scroll; overflow:auto; white-space:nowrap">
+      {% for category in category_list %}
+        <li class="list-group-item" style="display:inline-block; height:50px; width:150px; text-align:center">
+          <a href="/product_list/categoryId={{category.id}}">   <!-- .replace(" ", "").casefold() -->
+            <!-- <img src="{{category.iconURL}}" alt="{{category.categoryName}}" style="height:60px;width:60px;"></img> -->
+            {{category.categoryName}}
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+    <!--<span class="pointer left-pointer dis">
+      <i class="fa fa-chevron-left"></i>
+    </span>
+    <span class="pointer right-pointer">
+      <i class="fa fa-chevron-right"></i>
+    </span>-->
+  </div>
+</div>
+  <!-- <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">-->
+  <!--  <span class="glyphicon glyphicon-chevron-left"></span>-->
+  <!--</a>-->
+  <!--<a class="right carousel-control" href="#carousel-example-generic" data-slide="next">-->
+  <!--  <span class="glyphicon glyphicon-chevron-right"></span>-->
+  <!--</a>-->
+        
+        
+        <!--{%for category in category_list%}-->
+        <!--<figure style="display:inline-block;text-align:center;height:80px;width:120px;overflow: scroll">-->
+        <!--    <a href="/categoryview/{{category.id}}">   <!-- .replace(" ", "").casefold() -->
+        <!--        <img src="{{category.iconURL}}" alt="{{category.categoryName}}" style="height:30px;width:25px;"></img>-->
+        <!--        <figcaption style="font-size:12px;">{{category.categoryName}}</figcaption>-->
+        <!--    </a>-->
+        <!--</figure>-->
+        <!--{% endfor %}-->
+        
+        <!--{% macro create_product_list(data) -%}-->
+        <!--{% for item_category in data %}-->
+        <!--<figure style="display:inline-block;text-align:center;height:80px;width:120px;">-->
+        <!--<a href="{{ item_category['url'] }}">-->
+        <!--    <img src="{{ url_for('static', filename=item_category['image']) }}" alt="{{ item_category['name'] }}" style="height:30px;width:25px;"></img>-->
+        <!--    <figcaption style="font-size:12px;">{{ item_category['name'] }}</figcaption>-->
+        <!--</a>-->
+        <!--</figure>-->
+        <!--{% endfor %}-->
+        <!--{%- endmacro %}-->
+        <!--{{create_product_list(products)}}         <!-- call create_product_list, and pass value to function-->
+ 
+    
+<style type="text/css">
+.menu-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+/*.menu-wrapper .menu-item {*/
+/*  white-space: nowrap;*/
+/*  overflow-y: hidden;*/
+/*}*/
+
+/*.menu-wrapper .menu-item a {*/
+/*  display: inline-block;*/
+/*  padding: 5px 20px;*/
+/*  color: #333;*/
+/*}*/
+/*.menu-wrapper .menu-item a.active {*/
+/*  background-color: #f6f6f6;*/
+/*}*/
+/*.menu-wrapper .menu-item a:hover {*/
+/*  text-decoration: none;*/
+/*}*/
+/*.menu-wrapper .menu-item a:first-child {*/
+/*  padding-left: 5px;*/
+/*}*/
+/*.menu-wrapper .menu-item::-webkit-scrollbar {*/
+/*  display: none;*/
+/*}*/
+.menu-wrapper .pointer {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  position: absolute;
+  top: 30px;
+  font-size:30px;
+}
+.menu-wrapper .pointer i {
+  color: #333;
+  cursor: pointer;
+}
+.menu-wrapper .left-pointer {
+  left: 0;
+}
+.menu-wrapper .right-pointer {
+  right: 0;
+}
+.menu-wrapper .dis i {
+  color: #ccc;
+}
+
+</style>

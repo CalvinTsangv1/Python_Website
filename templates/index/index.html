@@ -1,0 +1,29 @@
+<!-- extend base layout -->
+{% extends "./index_base.html" %}
+
+{% block head_css %}
+    {{ super() }}
+{% endblock %}
+
+{% block content %}
+    <div class=container>
+        <!--{% if not current_user.is_anonymous %}-->
+        <!--    <h1>Hello! {{current_user.username}}</h1>-->
+        <!--{% else %}-->
+        <!--    <h1>Welcome to Online Dawn Market!</h1>-->
+        <!--{% endif %}-->
+        <!--<hr>-->
+        {% include ('index/index_search.html') %}
+        
+        <hr>
+        {% include ('index/index_promotion.html') %}
+        <hr>
+        <h1>Category</h1><br>
+        {% include ('index/index_category.html') %}
+        <hr>
+        {% include ('index/index_itemList.html') %}
+        <hr>
+        <!--<h5><a href="/uploadpage">upload page</a></h5>-->
+         {% include ('chatbot/chatbot_page.html') %}
+    </div>
+{% endblock %}

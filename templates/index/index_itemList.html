@@ -1,0 +1,61 @@
+<div class=container>  <!--price for 2 decimal places not complete!-->
+    <div>
+        <div>
+            <h1 style="display:inline">Most Popular Items</h1>
+            <a href="/product_list/popular" style="float:right">
+                <span>View More...</span>
+            </a>
+        </div>
+        {% for itemlist in itemlists %}
+            <figure style="display:inline-block; text-align:center; height:200px; width:220px; padding:20px 10px 10px 20px">
+                <a href="/product_detail/itemId={{itemlist.id}}">
+                    <figcaption style="font-size:14px; text-align:left">
+                        <p>{{itemlist.user.username}}</p>
+                        <p>{{itemlist.createdDate}}</p>
+                    </figcaption>
+                    <img src={{itemlist.photoURL}} alt={{itemlist.itemName}} style="width:180px; height:200px; padding-bottom:10px"></img>
+                    <figcaption style="font-size:14px; text-align:left">
+                        <p class="crop">{{itemlist.itemName}}</p>
+                        <p>HK$: {{itemlist.price}}</p>
+                        <p style="text-align:right">{{itemlist.viewCounter}} Views</p>
+                    </figcaption>
+                </a>
+            </figure>
+        {% endfor %}
+    </div>
+    
+    <hr>
+    
+    <div>
+        <div>
+            <h1 style="display:inline">Most Recent Items</h1>
+            <a href="/product_list/recent" style="float:right">
+                <span>View More...</span>
+            </a>
+        </div>
+        {% for itemlist in itemlists2 %}
+            <figure style="display:inline-block; text-align:center; height:200px; width:220px; padding:20px 10px 10px 20px">
+                <a href="/product_detail/itemId={{itemlist.id}}">  
+                    <figcaption style="font-size:14px; text-align:left">
+                        <p>{{itemlist.user.username}}</p>
+                        <p>{{itemlist.createdDate}}</p>
+                    </figcaption>
+                    <img src={{itemlist.photoURL}} alt={{itemlist.itemName}} style="width:180px; height:200px; padding-bottom:10px"></img>
+                    <figcaption style="font-size:14px; text-align:left;">
+                        <p class="crop">{{itemlist.itemName}}</p>
+                        <p>HK$: {{itemlist.price}}</p>
+                        <p style="text-align:right">{{itemlist.viewCounter}} Views</p>
+                    </figcaption>
+                </a>
+            </figure>
+        {% endfor %}
+    </div>
+</div>
+    
+<style type="text/css">
+.crop {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+</style>
